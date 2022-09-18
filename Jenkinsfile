@@ -11,7 +11,7 @@ pipeline {
       stage('Docker run') {
         steps {
 	        script { 
-					if ($(docker ps | grep AlpCon)) {
+					if ($(docker ps) | grep AlpCon) {
 					echo 'container are Running'
 					} elif ($(docker ps -a | grep AlpCon)) {
 					echo 'Container are down, start it...'
