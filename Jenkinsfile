@@ -19,6 +19,7 @@ pipeline {
                     docker start AlpCon
                     else
                     docker run --rm --name AlpCon -v ${WORKSPACE}:/home AlpCon
+                    fi
                     '''
                 }
             }
@@ -34,6 +35,7 @@ pipeline {
                     docker stop AlpCon
                     else
                     echo "Container are stoped"
+                    fi
                     '''
                 }
             }
