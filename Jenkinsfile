@@ -26,7 +26,7 @@ pipeline {
 	  
 	  stage('Chack if run ') {
             steps {
-	          script 
+	          script {
 			  sh '''
 		      if (echo $(docker ps | grep AlpCon); then
 			     echo "container are Running"
@@ -34,8 +34,9 @@ pipeline {
 				 docker stop AlpCon
 			  else 
 				 echo "Container are stoped"
-				 '''
-	        }   			
+	         }   
+		  }
         }
-    }	     
+    }	   
+	  
 }
