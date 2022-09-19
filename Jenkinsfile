@@ -1,34 +1,38 @@
 pipeline {
-   agent { node { label 'slave' } }
+   agent { node { label 'slave-docker' } }
    
    stages {
       stage('Docker build') {
         steps {
-          sh 'docker build --name AlpCon .'
+          sh 'docker build -t itay_alpcon:1.0 .'
         } 
       }
 
       stage('Docker run') {
         steps {
 	        script { 
-					if ($(docker ps) | grep AlpCon) {
-					echo 'container are Running'
-					} elif ($(docker ps -a | grep AlpCon)) {
-					echo 'Container are down, start it...'
-					 sh 'docker start AlpCon'
-					} else { sh 'docker run --rm --name AlpCon -v ${WORKSPACE}:/home AlpCon' }
-		    }  
+				sh '''
+				if (echo $(docker ps) | grep AlpCon); then
+					echo "container are Running :)"
+				elif (echo $(docker ps -a) | grep AlpCon); then
+					echo "Container is down, starting it...."
+					docker start AlpCon
+				else 
+					docker run --rm --name AlpCon -v ${WORKSPACE}:/home AlpCon
+		    }  		'''
 		}            
                
       }
 	  stage('Chack if run ') {
             steps {
-	          script {
-		      if ($(docker ps | grep AlpCon)) {
-			     echo 'container are Running'
-				 sleep 10 // seconds
-				 sh 'docker stop AlpCon'
-			 } else { echo 'Container are stoped' }
+	          script 
+			  sh '''
+		      if (echo $(docker ps | grep AlpCon); then
+			     echo "container are Running"
+				 sleep 10
+				 docker stop AlpCon
+			  else 
+				 echo "Container are stoped"
 			 
 	        }             
            }
