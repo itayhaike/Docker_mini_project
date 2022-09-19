@@ -35,7 +35,7 @@ pipeline {
 			  else 
 				 echo "Container are stoped"
 	         }   
-	   }
+		  }
         }
     }	     
 }
