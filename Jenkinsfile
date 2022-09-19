@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Docker build') {
             steps {
-                sh 'docker build -t itay_alpcon:1.0 .'
+                sh 'docker build --rm -t itay_alpcon:1.0 .'
             }
         }
 
@@ -18,6 +18,7 @@ pipeline {
                     echo "Container is down, starting it...."
                     docker start AlpCon
                     else
+                    echo "Run the container..."
                     docker run --name AlpCon -v ${WORKSPACE}:/home itay_alpcon:1.0
                     fi
                     '''
@@ -31,10 +32,11 @@ pipeline {
                     sh '''
                     if (echo $(docker ps | grep AlpCon); then
                     echo "container are Running"
+                    echo "stoping the container..."
                     sleep 10
                     docker stop AlpCon
                     else
-                    echo "Container are stoped"
+                    echo "Container are stoped :)"
                     fi
                     '''
                 }
