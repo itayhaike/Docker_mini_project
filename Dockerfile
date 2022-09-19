@@ -2,7 +2,7 @@ from alpine
 
 MAINTAINER Itay Haike
 
-RUN apk add --update add python3
+RUN apk add --update python3
 
 RUN apk add git
 
