@@ -18,7 +18,7 @@ pipeline {
                     echo "Container is down, starting it...."
                     docker start AlpCon
                     else
-                    docker run --rm --name AlpCon -v ${WORKSPACE}:/home AlpCon
+                    docker run --name AlpCon -v ${WORKSPACE}:/home AlpCon
                     fi
                     '''
                 }
