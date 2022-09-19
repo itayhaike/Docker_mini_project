@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    if (echo $(docker ps | grep AlpCon); then
+                    if (echo $(docker ps) | grep AlpCon); then
                     echo "container are Running"
                     echo "stoping the container..."
                     sleep 10
