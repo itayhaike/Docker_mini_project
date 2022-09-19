@@ -8,4 +8,5 @@ RUN apk add git
 
 WORKDIR /home
 
-RUN python3 py.py > OUTPUT_PYTHON
+#RUN python3 py.py > OUTPUT_PYTHON
+CMD ["python3", "py.py"]
