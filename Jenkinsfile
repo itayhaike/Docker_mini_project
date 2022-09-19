@@ -7,7 +7,7 @@ pipeline {
           sh 'docker build -t itay_alpcon:1.0 .'
         } 
       }
-
+	  
       stage('Docker run') {
         steps {
 	        script { 
@@ -22,8 +22,8 @@ pipeline {
 		      		'''
 			}
 		}            
-               
       }
+	  
 	  stage('Chack if run ') {
             steps {
 	          script 
@@ -34,8 +34,7 @@ pipeline {
 				 docker stop AlpCon
 			  else 
 				 echo "Container are stoped"
-			 
-	        }             
+	        }   			
         }
     }	   
 	  
