@@ -34,8 +34,8 @@ pipeline {
 				 docker stop AlpCon
 			  else 
 				 echo "Container are stoped"
+				 '''
 	        }   			
         }
-    }	   
-	  
+    }	     
 }
